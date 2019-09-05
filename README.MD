@@ -1,5 +1,4 @@
 
-===================================================================
 AUTHOR COMMENTS:
 ===================================================================
 
@@ -11,7 +10,6 @@ Anyway there is missing some tests like:
 In Cucumber Framework I would wrote a simple scenarios, that it would be checking every api calls - save and fails checking, and also retrying mechanism.
 
 
-===================================================================
 TASK DESCRIPTION:
 ===================================================================
 
