@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.jms.core.JmsTemplate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -27,11 +28,13 @@ class BasketMessengerServiceImplTest {
     @Mock
     private BasketMessengerRepository repository;
     @Mock
+    private JmsTemplate jmsTemplate;
+    @Mock
     private MessageMapper mapper;
 
     @BeforeEach
     void init() {
-        basketMessengerService = new BasketMessengerServiceImpl(repository, mapper);
+        basketMessengerService = new BasketMessengerServiceImpl(repository, jmsTemplate, mapper);
     }
 
     @Test

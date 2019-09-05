@@ -14,7 +14,7 @@ public interface BasketMessengerService {
     BasketMessengerTO receiveMessage(BasketMessengerTO basketMessenger);
 
     @Recover
-    String recover(SQLException exception);
+    BasketMessengerTO recover(SQLException exception, BasketMessengerTO basketMessenger);
 
     BasketMessengerTO getMessage(Long id);
 
