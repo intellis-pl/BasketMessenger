@@ -1,6 +1,6 @@
 package com.intellis.messagequeue.basketmessage.service;
 
-import com.intellis.messagequeue.basketmessage.to.BasketMessengerTO;
+import com.intellis.messagequeue.basketmessage.dto.BasketMessengerDTO;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
@@ -11,11 +11,11 @@ public interface BasketMessengerService {
     @Retryable(value = { SQLException.class },
             maxAttemptsExpression = "${basketmessage.app.maxAttempts}",
             backoff = @Backoff(delayExpression = "${basketmessage.app.backoff.delay}"))
-    BasketMessengerTO receiveMessage(BasketMessengerTO basketMessenger);
+    void receiveMessage(BasketMessengerDTO basketMessenger);
 
     @Recover
-    BasketMessengerTO recover(SQLException exception, BasketMessengerTO basketMessenger);
+    void registerBasketMessengerToJms(SQLException exception, BasketMessengerDTO basketMessenger);
 
-    BasketMessengerTO getMessage(Long id);
+    BasketMessengerDTO getMessage(Long id);
 
 }

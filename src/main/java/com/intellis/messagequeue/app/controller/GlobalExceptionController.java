@@ -21,7 +21,7 @@ public class GlobalExceptionController {
         log.info("IllegalArgumentException: ", e);
     }
 
-    @ResponseStatus(code = HttpStatus.CONFLICT, reason = "Database connection problem")
+    @ResponseStatus(code = HttpStatus.SERVICE_UNAVAILABLE, reason = "Database connection problem")
     @ExceptionHandler(SQLException.class)
     public void handleSQLException(SQLException e) {
         log.info("SQLException: ", e);

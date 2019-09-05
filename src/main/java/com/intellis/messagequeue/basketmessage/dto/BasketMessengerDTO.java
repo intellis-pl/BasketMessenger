@@ -1,4 +1,4 @@
-package com.intellis.messagequeue.basketmessage.to;
+package com.intellis.messagequeue.basketmessage.dto;
 
 import lombok.*;
 
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Builder
-public class BasketMessengerTO {
+public class BasketMessengerDTO {
     private Long id;
     @NotNull(message = "Product id cannot be null")
     private Long productId;

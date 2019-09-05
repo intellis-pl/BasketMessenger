@@ -1,9 +1,9 @@
 package com.intellis.messagequeue.basketmessage.service;
 
+import com.intellis.messagequeue.basketmessage.dto.BasketMessengerDTO;
 import com.intellis.messagequeue.basketmessage.entity.BasketMessengerEntity;
 import com.intellis.messagequeue.basketmessage.mapper.MessageMapper;
 import com.intellis.messagequeue.basketmessage.repository.BasketMessengerRepository;
-import com.intellis.messagequeue.basketmessage.to.BasketMessengerTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,7 +45,7 @@ class BasketMessengerServiceImplTest {
     @Test
     void shouldSaveBasketMessenger() {
         //given
-        BasketMessengerTO basketMessenger = createBasketMessenger();
+        BasketMessengerDTO basketMessenger = createBasketMessenger();
         BasketMessengerEntity basketMessengerEntity = createBasketMessengerEntity();
 
         //when
@@ -65,8 +65,8 @@ class BasketMessengerServiceImplTest {
                 .build();
     }
 
-    private BasketMessengerTO createBasketMessenger() {
-        return BasketMessengerTO.builder()
+    private BasketMessengerDTO createBasketMessenger() {
+        return BasketMessengerDTO.builder()
                 .productId(PRODUCT_ID)
                 .userId(USER_ID)
                 .productName(PRODUCT_NAME)

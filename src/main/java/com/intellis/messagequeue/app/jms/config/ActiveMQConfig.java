@@ -18,21 +18,18 @@ import javax.jms.ConnectionFactory;
 @Configuration
 public class ActiveMQConfig {
 
-    public static final String QUEUE_MESSAGE = "basket-message-queue";
-    public static final String QUEUE_FACTORY = "queueListenerFactory";
-
     @Bean
     public JmsListenerContainerFactory<?> queueListenerFactory(ConnectionFactory connectionFactory,
                                                                DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-        factory.setMessageConverter(messageConverter());
+        factory.setMessageConverter(createMessageConverter());
         configurer.configure(factory, connectionFactory);
         factory.setErrorHandler(t -> log.error("JMS message listener failed: An error has occurred in the transaction"));
         return factory;
     }
 
     @Bean
-    public MessageConverter messageConverter() {
+    public MessageConverter createMessageConverter() {
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
         converter.setTargetType(MessageType.TEXT);
         converter.setTypeIdPropertyName("_type");
