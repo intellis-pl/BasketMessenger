@@ -24,7 +24,7 @@ public class ActiveMQConfig {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setMessageConverter(createMessageConverter());
         configurer.configure(factory, connectionFactory);
-        factory.setErrorHandler(t -> log.error("JMS message listener failed: An error has occurred in the transaction"));
+        factory.setErrorHandler(t -> log.error("JMS message listener failed: An error has occurred in the transaction {}", t.getMessage()));
         return factory;
     }
 

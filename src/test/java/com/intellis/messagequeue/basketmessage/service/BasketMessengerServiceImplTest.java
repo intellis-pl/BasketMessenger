@@ -13,6 +13,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jms.core.JmsTemplate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -54,6 +56,12 @@ class BasketMessengerServiceImplTest {
 
         //then
         verify(repository).save(basketMessengerEntity);
+    }
+
+    @Test
+    void shouldThrowExceptionWhenModelIsNull() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> basketMessengerService.receiveMessage(null));
+        assertEquals("Message cannot be null", exception.getMessage());
     }
 
     private BasketMessengerEntity createBasketMessengerEntity() {

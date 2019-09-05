@@ -32,6 +32,9 @@ public class BasketMessengerServiceImpl implements BasketMessengerService {
 
   @JmsListener(destination = QUEUE_MESSAGE, containerFactory = QUEUE_FACTORY)
   public void receiveMessage(BasketMessengerDTO basketMessenger) {
+    if(basketMessenger == null) {
+      throw new IllegalArgumentException("Message cannot be null");
+    }
     repository.save(mapper.map(basketMessenger));
     log.info("Retrieved and saved basket message for User Id: {}, and Product Id: {}", basketMessenger.getUserId(), basketMessenger.getProductId());
   }

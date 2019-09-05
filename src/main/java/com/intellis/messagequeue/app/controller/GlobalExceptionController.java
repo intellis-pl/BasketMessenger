@@ -33,9 +33,4 @@ public class GlobalExceptionController {
         log.info("EntityNotFoundException: ", e);
     }
 
-    @ExceptionHandler(ExhaustedRetryException.class)
-    public ResponseEntity<String> handleMethodExhaustedRetryException(ExhaustedRetryException e) {
-        log.info("ExhaustedRetryException: ", e);
-        return ResponseEntity.badRequest().body("Incomplete entity model");
-    }
 }
